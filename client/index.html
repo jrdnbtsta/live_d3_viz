@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>StreamLine D3</title>
+</head>
+
+<body>
+  <header class="header">
+    <h1>Visualizing Live Data</h1>
+  </header>
+
+  <div id='content-container'>
+
+    <div id='bar-container'>
+      <h3>Average Traffic Speed in New York</h3>
+      <div id="bar-graph"></div>
+      <button id='diagram'> D3 Selection Methods</button>
+    </div>
+
+    <div id='selection-diagram'>
+      <img src="http://lumiamitie.github.io/images/post_image/d3_enter_update_exit/d3_enter_update_exit02.PNG" alt="Selection Diagram">
+      <button id='graph'> D3 Graph Demo</button>
+    </div>
+
+
+  </div>
+
+  <footer id="footer">
+    <h4>Created by Sarah Hodges, Jordan Bautista, and Kyle Davelaar</h4>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+    crossorigin="anonymous"></script>
+
+    <script src="./bar_graph.js"></script>
+    <script>
+      $(function () {
+        $('#diagram').on('click', () => {
+          $('#bar-container').hide();
+          // $('#diagram').hide();
+          $('#selection-diagram').show();
+          // $('#graph').show();
+        })
+
+        $('#graph').on('click', () => {
+          $('#selection-diagram').hide();
+          // $('#diagram').hide();
+          $('#bar-container').show();
+          // $('#diagram').show();
+        })
+
+
+      })
+    </script>
+</body>
+
+</html>

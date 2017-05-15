@@ -1,0 +1,97 @@
+* {
+  margin: 0px; 
+  padding: 0px; 
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+}
+
+.header {
+  background-color: rgb(41.2%, 41.2%, 41.2%); 
+  height: 200px; 
+  line-height: 200px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 50px; 
+}
+
+.header img {
+  max-height: 250px;
+  vertical-align: middle;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+.info-box {
+  margin-top: 60px;
+}
+
+#bar-container {
+  padding: 30px;
+}
+
+#bar-container h3 {
+  font-size: 30px;
+}
+
+.info-box h3 {
+  color: grey;
+  vertical-align: middle;
+  font-weight: 200;
+}
+
+.bar-container {
+  display: inline;
+  max-width: 400px;
+}
+
+#bar-graph {
+  max-width: 800px;
+  display: inline;
+}
+
+#footer {
+  background-color: rgb(41.2%, 41.2%, 41.2%); 
+  height: 125px; 
+  line-height: 125px;
+}
+
+#footer h4 {
+  vertical-align: middle;
+  color: white;
+  font-weight: 200;
+}
+
+#selection-diagram {
+  display: none;
+}
+
+#selection-diagram img {
+  width: 800px;
+}
+
+button {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  height: 25px;
+  width: 200px;
+  border-radius: 2px;
+}
+
+#graph {
+  margin-top: 40px;
+
+}
+#content-container {
+  height: 550px;
+}
