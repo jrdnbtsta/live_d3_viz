@@ -5,7 +5,7 @@ const path = require('path');
 const io = require('socket.io').listen(server);
 const RTM = require("satori-sdk-js");
 
-//START SERVER / SERVER HTML
+//START SERVER / SERVE HTML
 
 app.use(express.static(path.join(__dirname, '../client')));
 
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 server.listen(3000, () => console.log('SERVER RUNNING ON 3000'));
 
 
-//SATORI DATA STREAM CONNECT
+//CONNECT TO SATORI DATA STREAM 
 const endpoint = "wss://open-data.api.satori.com";
 const appKey = "9BABD0370e2030dd5AFA3b1E35A9acBf";
 const channelTraffic = "nyc-traffic-speed";
@@ -27,20 +27,21 @@ rtm.on("enter-connected", () => console.log("Connected to RTM!"));
 const subscriptionTraffic = rtm.subscribe(channelTraffic, RTM.SubscriptionMode.SIMPLE);
 
 let barData = [];
-let tempData = [];
+let barQueue = [];
 
 subscriptionTraffic.on('rtm/subscription/data', function (pdu) {
   pdu.body.messages.forEach(function (msg) {
     if(msg.Borough === 'Staten island') msg.Borough = 'Staten Island';
-    if(tempData.length < 1000) tempData.push(msg);
+    if(barQueue.length < 1000) barQueue.push(msg);
   });
 });
 
 rtm.start();
 
+//QUEUE
 setInterval(() => {
-  if (tempData.length > 0) {
-    let freshData = tempData.shift();
+  if (barQueue.length > 0) {
+    let freshData = barQueue.shift();
 
     let found = false;
     for (let i = 0; i < barData.length; i += 1) {

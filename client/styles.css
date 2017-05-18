@@ -73,6 +73,7 @@ body {
 
 #selection-diagram {
   display: none;
+  
 }
 
 #selection-diagram img {
@@ -89,7 +90,7 @@ button {
 }
 
 #graph {
-  margin-top: 40px;
+  margin-top: 38px;
 
 }
 #content-container {
