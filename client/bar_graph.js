@@ -1,5 +1,5 @@
 (function () {
-	let socket = io.connect();
+	const socket = io.connect();
 
 	let settings;
 
@@ -7,18 +7,14 @@
 	//Since our viz will have both static and changing components, both need to be separated into two functions
 	socket.on('SEND_DATA', (data) => {
 		if (data.length > 0) {
-			if (!settings) {
-				settings = drawSVG(data)
-			};
+			if (!settings) settings = drawSVG(data)
 			drawContent(settings, data);
-
 		}
 	});
 
 	let margin = { top: 20, right: 80, bottom: 50, left: 80 },
 		width = 800 - margin.left - margin.right,
 		height = 400 - margin.top - margin.bottom;
-
 
 	//Function invoked only when an SVG does not already exist in DOM
 	function drawSVG(data) {
@@ -89,7 +85,7 @@
 		
 		//Select all SVG components tied with data
 		let columns = settings.svg.selectAll('g.column-container')
-			.data(data);
+			.data(data, d => d.Borough);
 		
 		//EXIT
 		columns.exit().remove();
@@ -102,20 +98,20 @@
 
 		newColumns.append('rect').transition()
 			.duration(1000)
-			.attr("opacity", 1)
+			.style("opacity", 1)
 			.attr('class', 'column')
 			.attr('x', d => xScale(d.Borough))
 			.attr('y', d => settings.yScale(d.Speed))
 			.attr('width', d => xScale.bandwidth())
 			.attr('height', d => height - settings.yScale(d.Speed))
-			.attr('fill', (d, i) => settings.colors[i]);
+			.style('fill', (d, i) => settings.colors[i]);
 
 		//UPDATE
 		let updateColumns = columns.select('.column');
 
 		updateColumns.transition()
 			.duration(1000)
-			.attr("opacity", 1)
+			.style("opacity", 1)
 			.attr('width', d => xScale.bandwidth())
 			.attr('height', d => height - settings.yScale(d.Speed))
 			.attr('x', d => xScale(d.Borough))

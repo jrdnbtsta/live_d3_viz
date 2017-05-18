@@ -60,17 +60,16 @@ setInterval(() => {
 let connections = [];
 
 io.sockets.on('connection', socket => {
-  //Connect
+
   connections.push(socket);
   console.log('connected: %s sockets connected', connections.length);
 
-  //Disconnect
   socket.on('disconnect', data => {
     connections.splice(connections.indexOf(socket), 1);
     console.log('Disconnected: %s sockets connected', connections.length);
   });
 
-  //Send Data
+  //SEND DATA
   setInterval(() => socket.emit('SEND_DATA', barData), 1000);
 });
 
