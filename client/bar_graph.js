@@ -83,7 +83,9 @@
 			.selectAll('text')
 			.style("font-size","14px");
 		
-		//Select all SVG components tied with data
+		//Selection Methods
+		
+		//BIND DATA
 		let columns = settings.svg.selectAll('g.column-container')
 			.data(data, d => d.Borough);
 		
